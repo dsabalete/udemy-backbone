@@ -1,4 +1,30 @@
+var Song = Backbone.Model.extend({
+    initialize: function () {
+        console.log('A new song has been created.');
+    },
+    defaults: {
+        genre: 'Jazz'
+    }
+});
 
-// In the first few sections, we do all the coding here.
-// Later, you'll see how to organize your code into separate
-// files and modules.
+var song = new Song({
+    title: 'Blue in Green',
+    artist: 'Miles Davis',
+    publishYear: 1959
+});
+
+// set a property or change an existing one
+song.set('title', 'Blue in Greeen');
+
+// get property value
+var title = song.get('title');
+
+// exist the property?
+var hasTitle = song.has('title');
+
+// remove property
+song.unset('title');
+
+// remove all property from model
+song.clear();
+
