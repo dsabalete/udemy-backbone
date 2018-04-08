@@ -4,6 +4,11 @@ var Song = Backbone.Model.extend({
     },
     defaults: {
         genre: 'Jazz'
+    },
+    validate: function(attrs) {
+        if(!attrs.title) {
+            return "Title is required";
+        }
     }
 });
 
