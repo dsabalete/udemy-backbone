@@ -56,3 +56,5 @@ var Dog = Animal.extend({
 var dog = new Dog()
 
 dog.walk()
+
+
