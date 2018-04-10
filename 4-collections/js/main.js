@@ -2,7 +2,8 @@ var Song = Backbone.Model.extend()
 
 // ---- Creating collections
 var Songs = Backbone.Collection.extend({
-    model: Song
+    model: Song,
+    url: '/api/songs'
 })
 
 var songs = new Songs([
@@ -25,7 +26,7 @@ songs.add(new Song({ title: 'Song 5', genre: 'Jazz', downloads: 110}), { at: 0 }
 
 songs.push(new Song({ title: 'Song 6', genre: 'Jazz', downloads: 90 }))
 
-var lastSong = song.pop()
+var lastSong = songs.pop()
 
 var jazzSongs = songs.where({ genre: 'Jazz'})
 
@@ -37,4 +38,17 @@ var topDownloads = songs.filter(function(song) {
 
 songs.each(function(song) {
     console.log(song)
+})
+
+//--- Connecting to the server
+// GET /api/songs
+songs.fetch() 
+
+// GET /api/songs?page=2
+songs.fetch({
+    data: { 
+        page: 2
+    },
+    success: function() {},
+    error: function(){}
 })
