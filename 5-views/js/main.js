@@ -8,8 +8,11 @@ var SongView = Backbone.View.extend({
     tagName: 'li',
 
     render: function () {
-        this.$el.html(this.model.get('title'))
-        this.$el.attr("id", this.model.id)
+        var template = _.template($("#songTemplate").html())
+        var html = template(this.model.toJSON())
+        this.$el.html(html)
+        //this.$el.html(this.model.get('title') + " <button>Listen</button>")
+        //this.$el.attr("id", this.model.id)
 
         return this
     }
@@ -45,9 +48,9 @@ var SongsView = Backbone.View.extend({
 })
 
 var songs = new Songs([
-    new Song({ id: 1, title: 'Blue in Green' }),
-    new Song({ id: 2, title: 'So What' }),
-    new Song({ id: 3, title: 'All Blues' })
+    new Song({ id: 1, title: 'Blue in Green', plays: 10 }),
+    new Song({ id: 2, title: 'So What', plays: 1100 }),
+    new Song({ id: 3, title: 'All Blues', plays: 1 })
 ])
 
 var songsView = new SongsView({ el: '#songs', model: songs })
