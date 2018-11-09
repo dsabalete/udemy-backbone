@@ -37,8 +37,9 @@ var TodoItemsView = Backbone.View.extend({
     },
 
     render: function () {
-        var template = $("#todoItemsTemplate").html();
-        var html = Mustache.render(template);
+        var template = _.template($("#todoItemsTemplate").html());
+        var html = template();
+
         this.$el.html(html);
 
         return this;

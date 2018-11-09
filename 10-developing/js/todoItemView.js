@@ -29,8 +29,9 @@ var TodoItemView = Backbone.View.extend({
 
         this.$el.toggleClass("completed", this.model.get("completed"));
 
-        var template = $("#todoItemTemplate").html();
-        var html = Mustache.render(template, this.model.toJSON());
+        var template = _.template($("#todoItemTemplate").html());
+        var html = template({ title: this.model.get("title"), completed: this.model.get("completed") });
+
         this.$el.html(html);
 
         return this;
