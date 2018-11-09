@@ -9,6 +9,11 @@ var TodoItemsView = Backbone.View.extend({
         }
 
         this.model.on("add", this.onAddTodoItem, this);
+        this.model.on("remove", this.onRemoveTodoItem, this);
+    },
+
+    onRemoveTodoItem: function (todoItem) {
+        this.$("li#" + todoItem.id).remove();
     },
 
     onAddTodoItem: function (todoItem) {
